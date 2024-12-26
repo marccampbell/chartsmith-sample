@@ -32,7 +32,7 @@ serviceAccount:
   name: ""
 
 # This is for setting Kubernetes Annotations to a Pod.
-# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ 
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 podAnnotations: {}
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
@@ -121,3 +121,24 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+postgresql:
+  enabled: true # Set to false for external PostgreSQL
+  image:
+    registry: registry.replicated.com
+    repository: chartsmith-sample/postgresql
+    tag: 16.1.0-debian-11-r21
+    pullPolicy: Always
+    debug: false
+  auth:
+    postgresPassword: "your-postgres-password"
+    database: "your-database-name"
+  external:
+    host: ""
+    port: 5432
+    database: ""
+    user: "postgres"
+    password: ""
+  persistence:
+    enabled: true
+    size: 8Gi
